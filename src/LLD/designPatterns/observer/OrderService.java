@@ -1,14 +1,36 @@
 package LLD.designPatterns.observer;
 
+import LLD.designPatterns.creational.Singleton.SingletonMultiThreaded;
+
 import java.util.ArrayList;
 import java.util.List;
 
 //publisher
-public class OrderService { // singleton
+public class OrderService {
+//   // need to make singleton
+//    private List<OrderPlacedSubscriber> orderPlacedSubscribers;
+//
+//    public OrderService() {
+//        this.orderPlacedSubscribers = new ArrayList<>();
+//    }
+
+    private static OrderService instance = null;
+
     private List<OrderPlacedSubscriber> orderPlacedSubscribers;
 
-    public OrderService() {
+    private OrderService() {
         this.orderPlacedSubscribers = new ArrayList<>();
+    }
+
+    public static OrderService getInstance() {
+        if (instance == null) {
+            synchronized (OrderService.class) {
+                if (instance == null) {
+                    instance = new OrderService();
+                }
+            }
+        }
+        return instance;
     }
 
     public void placeOrder() {
