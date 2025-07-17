@@ -6,3 +6,11 @@ public class StrategyMainClient {
         maps.findPath("A", "B", TransportMode.CAR);
     }
 }
+
+/*Homework
+Rainwater trapping
+Implement via strategy DP
+BF->N^2,1
+Op1->N,N
+op2->N,1
+ */
